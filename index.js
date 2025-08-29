@@ -7,8 +7,8 @@ app.use(cors());
 app.use(express.json());
 
 
-const FULL_NAME_LOWER = process.env.FULL_NAME_LOWER     // lowercase with underscores
-const DOB_DDMMYYYY    = process.env.DOB_DDMMYYYY         // ddmmyyyy
+const FULL_NAME_LOWER = process.env.FULL_NAME_LOWER     
+const DOB_DDMMYYYY    = process.env.DOB_DDMMYYYY      
 const EMAIL           = process.env.EMAIL           
 const ROLL_NUMBER     = process.env.ROLL_NUMBER     
 
@@ -50,7 +50,6 @@ app.post("/bfhl", (req, res) => {
     for (const item of data) {
       const s = String(item);
 
-      // collect letters from every element for concat_string
       const chars = s.match(/[A-Za-z]/g);
       if (chars) letters.push(...chars);
 
@@ -65,7 +64,6 @@ app.post("/bfhl", (req, res) => {
       }
     }
 
-    // Build concat_string: reverse letters, alternate UPPER/lower starting with UPPER
     letters.reverse();
     const concat_string = letters
       .map((ch, i) => (i % 2 === 0 ? ch.toUpperCase() : ch.toLowerCase()))
@@ -80,7 +78,7 @@ app.post("/bfhl", (req, res) => {
       even_numbers,
       alphabets,
       special_characters,
-      sum: String(sum), // sum as string
+      sum: String(sum), 
       concat_string,
     });
   } catch (e) {
