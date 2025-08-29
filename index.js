@@ -6,6 +6,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
+const FULL_NAME_LOWER = process.env.FULL_NAME_LOWER     // lowercase with underscores
+const DOB_DDMMYYYY    = process.env.DOB_DDMMYYYY         // ddmmyyyy
+const EMAIL           = process.env.EMAIL           
+const ROLL_NUMBER     = process.env.ROLL_NUMBER     
+
+
 function isNumericString(s) {
   return /^[+-]?\d+$/.test(s);
 }
@@ -36,7 +43,7 @@ app.post("/bfhl", (req, res) => {
     const even_numbers = [];
     const alphabets = [];
     const special_characters = [];
-    const letters = []; // for concat_string (collect ALL letters from ALL items)
+    const letters = []; 
 
     let sum = 0;
 
